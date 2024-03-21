@@ -2,6 +2,12 @@
 Changelog
 =========
 
+- :support:`2287` (solves part of :issue:`396`) The switch to use SHA256 hashing
+  via the `PKey.fingerprint` property only partially resolved the FIPS
+  compatibility challenges: some residual usage in debug logging within key
+  logic flows of `PKey.get_fingerprint()`, which still uses MD5, continued to
+  cause problems. These instances of debug logging now use the SHA256-using
+  `PKey.fingerprint`.
 - :bug:`2353` Fix a 64-bit-ism in the test suite so the tests don't encounter a
   false negative on 32-bit systems. Reported by Stanislav Levin.
 - :release:`3.4.0 <2023-12-18>`
